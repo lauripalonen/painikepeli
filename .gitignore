@@ -122,3 +122,9 @@ sketch
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
+
+### .env ###
+.env
+
+### VS Code REST Client ###
+requests/
