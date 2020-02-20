@@ -1,28 +1,9 @@
-const http= require('http')
+const app = require('./app')
+const http = require('http')
+const config = require('./utils/config')
 
-let users = [
-  {
-    id: 1,
-    username: 'Charizard',
-    password: 'fl4mewheel' 
-  },
-  {
-    id: 2,
-    username: 'Kirby',
-    password: 'mouthfull'
-  },
-  {
-    id: 3,
-    username: 'Cpt. Falcon',
-    password: 'yamoves'
-  }
-]
+const server = http.createServer(app)
 
-const app = http.createServer((request, response) => {
-  response.writeHead(200, { 'Content-Type': 'application/json'})
-  response.end(JSON.stringify(users))
+server.listen(config.PORT, () => {
+  console.log(`Servver running on port ${config.PORT}`)
 })
-
-const port = 3001
-app.listen(port)
-console.log(`Server running on port ${port}`)
