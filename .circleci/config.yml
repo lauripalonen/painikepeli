@@ -5,11 +5,13 @@ jobs:
   build-and-test:
     executor:
       name: node/default
+    working_directory: ./backend
     steps:
       - checkout
       - node/with-cache:
           steps:
             - run: npm install
+
             - run: npm test
 workflows:
     build-and-test:
