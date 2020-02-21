@@ -5,16 +5,13 @@ jobs:
   build-and-test:
     executor:
       name: node/default
-
     working_directory: ~/painikepeli/backend
-
     steps:
        - checkout:
-               path: ~/painikepeli
+           path: ~/painikepeli
 
       - node/with-cache:
           steps:
-            - run: cd ./backend
             - run: npm install
 
             - run: npm test
