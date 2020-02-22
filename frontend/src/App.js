@@ -18,7 +18,6 @@ const App = () => {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
       setUserPoints(user.points)
-      clicksUntilNextReward()
     }
 
   }, [])
@@ -33,8 +32,14 @@ const App = () => {
       window.localStorage.setItem(
         'loggedPainikepeliUser', JSON.stringify(user)
       )
+
       setUser(user)
       setUserPoints(user.points)
+
+      const button = await buttonService.getButton()
+      const currentPresses = button.presses
+      setRewardCounter(10 - (currentPresses % 10))
+
       setUsername('')
       setPassword('')
     } catch (exception) {
@@ -52,6 +57,11 @@ const App = () => {
       setUsername('')
       setPassword('')
       setUser(user)
+      setUserPoints(user.points)
+
+      const button = await buttonService.getButton()
+      const currentPresses = button.presses
+      setRewardCounter(10 - (currentPresses % 10))
 
     } catch (exception) {
       console.log('Error: ', exception)
@@ -87,7 +97,7 @@ const App = () => {
 
     const player = await signupService.getPlayer(user.id)
 
-    let updatedPlayer = {...player, points:player.points-1}
+    let updatedPlayer = { ...player, points: player.points - 1 }
 
     await signupService.updatePlayerPoints(user.id, updatedPlayer)
     setUserPoints(updatedPlayer.points)
@@ -114,7 +124,7 @@ const App = () => {
       updatedPlayer.points += 40
       setUserPoints(updatedPlayer.points)
       await signupService.updatePlayerPoints(user.id, updatedPlayer)
-      
+
     }
     else if (buttonPresses % 10 === 0) {
       console.log('Reward player with 5 points')
@@ -129,11 +139,7 @@ const App = () => {
     const button = await buttonService.getButton()
     const buttonPresses = button.presses
 
-    const clicksUntil500 = 500 - (buttonPresses % 500)
-    const clicksUntil100 = 100 - (buttonPresses % 100)
-    const clicksUntil10 = 10 - (buttonPresses % 10)
-
-    setRewardCounter(Math.min(clicksUntil500, clicksUntil100, clicksUntil10))
+    setRewardCounter(10 - (buttonPresses % 10))
   }
 
   const userForm = () => {
@@ -165,7 +171,7 @@ const App = () => {
           <button onClick={handleLogout}>Log out</button>
         </div>
         <div>
-          Current points: {userPoints} < br/>
+          Current points: {userPoints} < br />
           Clicks until next reward: {rewardCounter}
         </div>
       </div>
