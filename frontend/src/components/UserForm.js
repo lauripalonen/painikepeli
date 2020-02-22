@@ -1,16 +1,15 @@
 import React from 'react'
 
-const LoginForm = ({
-  handleSubmit,
+const UserForm = ({
   handleUsernameChange,
   handlePasswordChange,
   username,
-  password
+  password,
 }) => {
   return (
     <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <h2>Account</h2>
+      <form>
         <div>
           username
           <input
@@ -29,10 +28,9 @@ const LoginForm = ({
             onChange={handlePasswordChange}
           />
         </div>
-        <button type="submit">login</button>
       </form>
     </div>
   )
 }
 
-export default LoginForm
+export default UserForm
