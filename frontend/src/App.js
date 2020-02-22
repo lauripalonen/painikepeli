@@ -10,6 +10,7 @@ const App = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [userPoints, setUserPoints] = useState(null)
+  const [rewardCounter, setRewardCounter] = useState('')
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedPainikepeliUser')
@@ -17,6 +18,7 @@ const App = () => {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
       setUserPoints(user.points)
+      clicksUntilNextReward()
     }
 
   }, [])
@@ -77,6 +79,8 @@ const App = () => {
 
     await handlePlayerPoints()
 
+    clicksUntilNextReward()
+
   }
 
   const handlePlayerPoints = async () => {
@@ -121,6 +125,17 @@ const App = () => {
 
   }
 
+  const clicksUntilNextReward = async () => {
+    const button = await buttonService.getButton()
+    const buttonPresses = button.presses
+
+    const clicksUntil500 = 500 - (buttonPresses % 500)
+    const clicksUntil100 = 100 - (buttonPresses % 100)
+    const clicksUntil10 = 10 - (buttonPresses % 10)
+
+    setRewardCounter(Math.min(clicksUntil500, clicksUntil100, clicksUntil10))
+  }
+
   const userForm = () => {
     return (
       <div>
@@ -150,7 +165,8 @@ const App = () => {
           <button onClick={handleLogout}>Log out</button>
         </div>
         <div>
-          Current points: {userPoints}
+          Current points: {userPoints} < br/>
+          Clicks until next reward: {rewardCounter}
         </div>
       </div>
     )
