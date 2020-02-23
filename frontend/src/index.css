@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+
+body {
+  background-color: #FFCCE7;
+  font-family: 'Press Start 2p';
+}
+
+h1, h2 {
+  color: #E01AD7
+}
+
+.content {
+  text-align: center;
+}

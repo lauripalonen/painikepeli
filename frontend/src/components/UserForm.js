@@ -10,24 +10,25 @@ const UserForm = ({
     <div>
       <h2>Account</h2>
       <form>
-        <div>
-          username
-          <input
-            type="text"
-            value={username}
-            name="Username"
-            onChange={handleUsernameChange}
-          />
-        </div>
-        <div>
-          password
-          <input
-            type="password"
-            value={password}
-            name="Password"
-            onChange={handlePasswordChange}
-          />
-        </div>
+
+        <label htmlFor="username">Username </label>
+        <br/>
+        <input
+          type="text"
+          value={username}
+          name="Username"
+          onChange={handleUsernameChange}
+        />
+        <br/>
+        <label htmlFor="password">Password </label>
+        <br/>
+        <input
+          type="password"
+          value={password}
+          name="Password"
+          onChange={handlePasswordChange}
+        />
+
       </form>
     </div>
   )

@@ -173,9 +173,6 @@ const App = () => {
           <GameButton handleButtonPress={handleButtonPress} />
         </div>
         <div>
-          <button onClick={handleLogout}>Log out</button>
-        </div>
-        <div>
           Your points: {userPoints} < br />
           Clicks until next reward: {rewardCounter}
         </div>
@@ -187,14 +184,17 @@ const App = () => {
             one click: -1 point
           </p>
         </div>
+        <div>
+          <button onClick={handleLogout}>Log out</button>
+        </div>
       </div>
     )
   }
 
   return (
-    <div>
+    <div className="content">
       <div>
-        <h1>Painikepeli</h1>
+        <h1>Button the Game</h1>
       </div>
       <div>
         {user === null ? userForm() : gameDisplay()}
