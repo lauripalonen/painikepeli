@@ -11,6 +11,7 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [userPoints, setUserPoints] = useState(null)
   const [rewardCounter, setRewardCounter] = useState('')
+  const [notification, setNotification] = useState('')
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedPainikepeliUser')
@@ -43,7 +44,8 @@ const App = () => {
       setPassword('')
 
     } catch (exception) {
-      console.log('Error: ', exception)
+      const errorMessage = exception.response.data.error
+      setTimedNotification(errorMessage)
     }
   }
 
@@ -67,7 +69,8 @@ const App = () => {
       setPassword('')
 
     } catch (exception) {
-      console.log('Error: ', exception)
+      const errorMessage = exception.response.data.error
+      setTimedNotification(errorMessage)
     }
   }
 
@@ -117,21 +120,21 @@ const App = () => {
     }
 
     else if (buttonPresses % 500 === 0) {
-      console.log('Reward player with 250 points')
       updatedPoints += 250
       setUserPoints(updatedPlayer.points)
+      setTimedNotification('250 points rewarded!')
     }
 
     else if (buttonPresses % 100 === 0) {
-      console.log('Reward player with 40 points')
       updatedPoints += 40
       setUserPoints(updatedPlayer.points)
+      setTimedNotification('40 points rewarded!')
     }
 
     else if (buttonPresses % 10 === 0) {
-      console.log('Reward player with 5 points')
       updatedPoints += 5
       setUserPoints(updatedPlayer.points)
+      setTimedNotification('5 points rewarded!')
     }
 
     updatedPlayer.points = updatedPoints
@@ -161,8 +164,9 @@ const App = () => {
           />
         </div>
         <div className="button-block">
-          <button onClick={handleLogin} className="normal-button">Log in</button> or <button onClick={handleSignUp} className="normal-button">Sign up</button>
+          <button onClick={handleLogin} className="normal-button">LOG IN</button> or <button onClick={handleSignUp} className="normal-button">SIGN UP</button>
         </div>
+        <p style={{ textAlign: 'center' }}>{notification}</p>
       </div>
     )
   }
@@ -176,6 +180,9 @@ const App = () => {
         <div className="game-data">
           Your points: {userPoints} < br />
           Pushes until next reward: {rewardCounter}
+        </div>
+        <div className="notification-bar">
+          {notification}
         </div>
         <div className="instruction-block">
           <h4>Instructions: </h4>
@@ -198,6 +205,13 @@ const App = () => {
         </div>
       </div>
     )
+  }
+
+  const setTimedNotification = (message) => {
+    setNotification(message)
+    setTimeout(() => {
+      setNotification('')
+    }, 5000)
   }
 
   return (
