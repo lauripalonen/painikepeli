@@ -6,9 +6,90 @@ body {
 }
 
 h1, h2 {
-  color: #E01AD7
+  color: #E01AD7;
+  text-align: center;
 }
 
-.content {
+h4 {
+  margin: 2em 0 0 0; 
+}
+
+.inner-form {
+  margin: auto;
+  width: 100%;
+}
+
+.input-field {
+  width: 97%;
+}
+
+.button-block {
+  width: 100%;
+  margin: auto;
   text-align: center;
+}
+
+.main-content {
+  margin: auto;
+  border-style: solid 20px black;
+  width: 34em;
+  margin: 2em auto;
+}
+
+.account-form {
+  margin: 5em auto;
+  width: 22em;
+}
+
+.game-content {
+  text-align: center;
+}
+
+.instruction-block { 
+  text-align: left;
+  padding: 1em 0 0 1em;
+}
+
+.instructions {
+  text-align: left;
+  font-size: 0.85em;
+}
+
+.game-data {
+  display:inline-block;
+  width: 100%;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.quote {
+  font-size: 0.8em;
+  text-align: center;
+  padding-top: 1em; 
+}
+
+#thebutton {
+  display:inline-block;
+  height: 7em;
+  width: 7em;
+  background-color: purple;
+  border-radius: 50%;
+  margin: 1em;
+  box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.5);
+  font-size: 2em;
+  font-weight: bold;
+  font-family: 'Press Start 2p';
+  color: #FFCCE7;
+}
+
+.normal-button {
+  display:inline-block;
+  height: 4.5em;
+  width: 8.5em;
+  margin: 2em 0.1em;
+  background-color: rgb(247, 137, 241);
+  border: none;
+  font-family: 'Press Start 2p';
+  font-size: 1em;
+  color: #FFCCE7
 }

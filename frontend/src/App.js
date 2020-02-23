@@ -149,7 +149,7 @@ const App = () => {
 
   const userForm = () => {
     return (
-      <div>
+      <div className="account-form">
         <div>
           <UserForm
             handleSubmit={handleLogin}
@@ -157,10 +157,11 @@ const App = () => {
             handlePasswordChange={({ target }) => setPassword(target.value)}
             username={username}
             password={password}
+            className="user-form"
           />
         </div>
-        <div>
-          <button onClick={handleLogin}>Log in</button> or <button onClick={handleSignUp}>Sign up</button>
+        <div className="button-block">
+          <button onClick={handleLogin} className="normal-button">Log in</button> or <button onClick={handleSignUp} className="normal-button">Sign up</button>
         </div>
       </div>
     )
@@ -169,30 +170,38 @@ const App = () => {
   const gameDisplay = () => {
     return (
       <div>
-        <div>
+        <div className="game-content">
           <GameButton handleButtonPress={handleButtonPress} />
         </div>
-        <div>
+        <div className="game-data">
           Your points: {userPoints} < br />
-          Clicks until next reward: {rewardCounter}
+          Pushes until next reward: {rewardCounter}
         </div>
-        <div>
-          <p>
-            every 10th click: +5 points <br/>
-            every 100th click: +40 points <br/>
-            every 500th click: +250 points <br/>
-            one click: -1 point
+        <div className="instruction-block">
+          <h4>Instructions: </h4>
+          <p className="instructions">
+            * Push the button to gain rewards <br />
+            * Push cost: 1 point <br />
+            * Lose all points: Game over!<br /><br />
+            You can start again with 20 points <br />
           </p>
+          <h4>Rewards: </h4>
+          <p className="instructions">
+            * every 10th click: +5 points <br />
+            * every 100th click: +40 points <br />
+            * every 500th click: +250 points <br />
+          </p>
+          <p className="quote">"You win some, you lose some!"</p>
         </div>
-        <div>
-          <button onClick={handleLogout}>Log out</button>
+        <div style={{ textAlign: "center" }}>
+          <button onClick={handleLogout} className="normal-button">LOG OUT</button>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="content">
+    <div className="main-content">
       <div>
         <h1>Button the Game</h1>
       </div>

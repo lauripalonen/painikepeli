@@ -8,9 +8,8 @@ const UserForm = ({
 }) => {
   return (
     <div>
-      <h2>Account</h2>
-      <form>
-
+      <h2>Player account</h2>
+      <form className="inner-form">
         <label htmlFor="username">Username </label>
         <br/>
         <input
@@ -18,8 +17,10 @@ const UserForm = ({
           value={username}
           name="Username"
           onChange={handleUsernameChange}
+          className="input-field"
         />
         <br/>
+        <br />
         <label htmlFor="password">Password </label>
         <br/>
         <input
@@ -27,8 +28,8 @@ const UserForm = ({
           value={password}
           name="Password"
           onChange={handlePasswordChange}
+          className="input-field"
         />
-
       </form>
     </div>
   )

@@ -3,7 +3,7 @@ import React from 'react'
 const GameButton = ({ handleButtonPress}) => {
   return (
   <div>
-    <button onClick={handleButtonPress}>The Button</button>
+    <button onClick={handleButtonPress} id="thebutton">PUSH</button>
   </div>
   )
 }
