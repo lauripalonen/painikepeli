@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import loginService from './services/login'
-import signupService from './services/signup'
+import userService from './services/user'
 import buttonService from './services/button'
 import UserForm from './components/UserForm'
 import GameButton from './components/GameButton'
@@ -16,10 +16,11 @@ const App = () => {
     const loggedUserJSON = window.localStorage.getItem('loggedPainikepeliUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
+
       setUser(user)
       setUserPoints(user.points)
+      updateRewardCounter()
     }
-
   }, [])
 
   const handleLogin = async (event) => {
@@ -36,12 +37,11 @@ const App = () => {
       setUser(user)
       setUserPoints(user.points)
 
-      const button = await buttonService.getButton()
-      const currentPresses = button.presses
-      setRewardCounter(10 - (currentPresses % 10))
+      updateRewardCounter()
 
       setUsername('')
       setPassword('')
+
     } catch (exception) {
       console.log('Error: ', exception)
     }
@@ -50,18 +50,21 @@ const App = () => {
   const handleSignUp = async (event) => {
     event.preventDefault()
     try {
-      const user = await signupService.signup({
+      const user = await userService.signup({
         username, password,
       })
 
-      setUsername('')
-      setPassword('')
+      window.localStorage.setItem(
+        'loggedPainikepeliUser', JSON.stringify(user)
+      )
+
       setUser(user)
       setUserPoints(user.points)
 
-      const button = await buttonService.getButton()
-      const currentPresses = button.presses
-      setRewardCounter(10 - (currentPresses % 10))
+      updateRewardCounter()
+
+      setUsername('')
+      setPassword('')
 
     } catch (exception) {
       console.log('Error: ', exception)
@@ -85,60 +88,54 @@ const App = () => {
 
     await buttonService.increment(button.id, newButton)
 
-    console.log(`This was #${newButton.presses} press`)
-
     await handlePlayerPoints()
 
-    clicksUntilNextReward()
+    updateRewardCounter()
 
   }
 
   const handlePlayerPoints = async () => {
 
-    const player = await signupService.getPlayer(user.id)
+    const storedPlayer = JSON.parse(window.localStorage.getItem('loggedPainikepeliUser'))
+    const updatedPlayer = { ...storedPlayer, points: storedPlayer.points - 1 }
+    let updatedPoints = updatedPlayer.points
 
-    let updatedPlayer = { ...player, points: player.points - 1 }
-
-    await signupService.updatePlayerPoints(user.id, updatedPlayer)
-    setUserPoints(updatedPlayer.points)
-
-    const button = await buttonService.getButton()
-    const buttonPresses = button.presses
+    const buttonPresses = await buttonService.getButtonPresses()
 
     if (updatedPlayer.points < 1) {
       console.log('Continue?')
-      updatedPlayer.points = 20
+      updatedPoints = 20
       setUserPoints(20)
-      await signupService.updatePlayerPoints(user.id, updatedPlayer)
     }
-
+    
     else if (buttonPresses % 500 === 0) {
       console.log('Reward player with 250 points')
-      updatedPlayer.points += 250
+      updatedPoints += 250
       setUserPoints(updatedPlayer.points)
-      await signupService.updatePlayerPoints(user.id, updatedPlayer)
-
     }
+
     else if (buttonPresses % 100 === 0) {
       console.log('Reward player with 40 points')
-      updatedPlayer.points += 40
+      updatedPoints += 40
       setUserPoints(updatedPlayer.points)
-      await signupService.updatePlayerPoints(user.id, updatedPlayer)
-
     }
+    
     else if (buttonPresses % 10 === 0) {
       console.log('Reward player with 5 points')
-      updatedPlayer.points += 5
+      updatedPoints += 5
       setUserPoints(updatedPlayer.points)
-      await signupService.updatePlayerPoints(user.id, updatedPlayer)
     }
+
+    updatedPlayer.points = updatedPoints
+    setUserPoints(updatedPlayer.points)
+
+    await userService.updatePlayerPoints(user.id, updatedPlayer)
+    window.localStorage.setItem('loggedPainikepeliUser', JSON.stringify(updatedPlayer))
 
   }
 
-  const clicksUntilNextReward = async () => {
-    const button = await buttonService.getButton()
-    const buttonPresses = button.presses
-
+  const updateRewardCounter = async () => {
+    const buttonPresses = await buttonService.getButtonPresses()
     setRewardCounter(10 - (buttonPresses % 10))
   }
 
