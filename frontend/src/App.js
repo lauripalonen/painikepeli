@@ -97,17 +97,25 @@ const App = () => {
   const handlePlayerPoints = async () => {
 
     const storedPlayer = JSON.parse(window.localStorage.getItem('loggedPainikepeliUser'))
-    const updatedPlayer = { ...storedPlayer, points: storedPlayer.points - 1 }
+    const updatedPlayer = {
+      ...storedPlayer,
+      points: storedPlayer.points < 1 ? 0 : storedPlayer.points - 1
+    }
     let updatedPoints = updatedPlayer.points
+    setUserPoints(updatedPoints)
 
     const buttonPresses = await buttonService.getButtonPresses()
 
     if (updatedPlayer.points < 1) {
-      console.log('Continue?')
-      updatedPoints = 20
-      setUserPoints(20)
+      if (window.confirm("No more points. Start again with 20 points?")) {
+        updatedPoints = 20
+        setUserPoints(20)
+      } else {
+        localStorage.clear()
+        setUser(null)
+      }
     }
-    
+
     else if (buttonPresses % 500 === 0) {
       console.log('Reward player with 250 points')
       updatedPoints += 250
@@ -119,7 +127,7 @@ const App = () => {
       updatedPoints += 40
       setUserPoints(updatedPlayer.points)
     }
-    
+
     else if (buttonPresses % 10 === 0) {
       console.log('Reward player with 5 points')
       updatedPoints += 5
@@ -168,8 +176,16 @@ const App = () => {
           <button onClick={handleLogout}>Log out</button>
         </div>
         <div>
-          Current points: {userPoints} < br />
+          Your points: {userPoints} < br />
           Clicks until next reward: {rewardCounter}
+        </div>
+        <div>
+          <p>
+            every 10th click: +5 points <br/>
+            every 100th click: +40 points <br/>
+            every 500th click: +250 points <br/>
+            one click: -1 point
+          </p>
         </div>
       </div>
     )
