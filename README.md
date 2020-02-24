@@ -25,7 +25,7 @@ To clone this project, run `git clone https://github.com/lauripalonen/painikepel
 Run `npm install` on root of both backend and frontend directories to install project depencies.  
   
 **MongoDB**  
-Create a [MongoDB account](https://www.mongodb.com/cloud) if you don't have one. Build a new cluster and as a connection method, choose *"Connect your Application"* and copy the connection string (begins with "mongodb+srv://...").
+Log in to your [MongoDB account](https://www.mongodb.com/cloud) or create a new one. Build a new cluster and as a connection method, choose *"Connect your Application"* and copy the connection string (begins with "mongodb+srv://...").
 
 **Environment variables**  
 Config file in backend/utils/config.js excepts a .env file in backend root. Create .env in backend/ and add four variables to it:  
