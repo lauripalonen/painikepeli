@@ -8,12 +8,16 @@ const api = supertest(app)
 
 const initialUsers = [
   {
-    username: 'Jigglypuff',
-    passwordHash: 'p0und'
+    username: 'aerodactyl',
+    passwordHash: 'Wing4ttack'
   },
   {
-    username: 'Charizard',
-    passwordHash: 'fl4mewheel'
+    username: 'jigglypuff',
+    passwordHash: 'p0unD'
+  },
+  {
+    username: 'charizard',
+    passwordHash: 'fl4meWheel'
   }
 ]
 
@@ -25,6 +29,10 @@ beforeEach(async () => {
   await userObject.save()
 
   userObject = new User(initialUsers[1])
+  userObject.passwordHash = await bcrypt.hash(userObject.passwordHash, 10)
+  await userObject.save()
+
+  userObject = new User(initialUsers[2])
   userObject.passwordHash = await bcrypt.hash(userObject.passwordHash, 10)
   await userObject.save()
 })
