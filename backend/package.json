@@ -1,9 +1,4 @@
 {
-  "jest": {
-    "testPathIgnorePatterns": [
-      "./utils/middleware.js"
-    ]
-  },
   "name": "buttongamebackend",
   "version": "1.0.0",
   "description": "",
