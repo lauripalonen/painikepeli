@@ -55,6 +55,6 @@ To run backend tests, use command `npm test` on backend root. This will also cre
 **Optimize server communication**  
 Current communication from frontend to the database is rather heavy. For better performance, one solution would be implementing a WebSocket API to this project. This could also make the reward counter act in real-time, instead of per button push or page reload.
 
-**Restrict /api/ paths**
-Paths such as /api/button are not restricted, and anyone can access them. While they don't contain any sensitive data, certainly they should be only in app's use. This issue can be fixed with [Redux state container](https://github.com/reduxjs/redux).
+**Restrict /api/ paths**  
+Paths such as /api/button are not restricted, and anyone can access them. While they don't contain any sensitive data, they should be only in app's use. This issue can be fixed with [Redux state container](https://github.com/reduxjs/redux).
 
