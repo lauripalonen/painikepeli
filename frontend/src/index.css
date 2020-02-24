@@ -105,11 +105,11 @@ li {
 .normal-button {
   display:inline-block;
   height: 4em;
-  width: 8em;
+  width: 9em;
   margin: 2em 0em 1em 0em;
   background-color: rgb(247, 137, 241);
   border: none;
   font-family: 'Press Start 2p';
-  font-size: 0.9em;
+  font-size: 0.8em;
   color: #FFCCE7;
 }
