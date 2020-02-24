@@ -187,7 +187,7 @@ const App = () => {
         <div className="instruction-block">
           <h4>Instructions: </h4>
           <p className="instructions">
-            * Push the button to gain rewards <br />
+            * Push the button and gain rewards<br/>
             * Push cost: 1 point <br />
             * Lose all points: Game over!<br /><br />
             You can start again with 20 points <br />
