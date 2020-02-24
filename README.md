@@ -49,7 +49,7 @@ When deploying the code, run command `git subtree push --prefix backend heroku m
 
 
 ## Backend testing  
-To run backend tests, use command `npm test` on backend root. 
+To run backend tests, use command `npm test` on backend root. This will also create a test coverage report to backend/coverage/lcov-report/index.html.
 
 ## For further development
 **Optimize server communication**  
