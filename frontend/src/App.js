@@ -153,19 +153,16 @@ const App = () => {
 
   const userForm = () => {
     return (
-      <div className="account-form">
-        <UserForm
-          handleSubmit={handleLogin}
-          handleUsernameChange={({ target }) => setUsername(target.value)}
-          handlePasswordChange={({ target }) => setPassword(target.value)}
-          username={username}
-          password={password}
-          className="user-form"
-          handleLogin={handleLogin}
-          handleSignUp={handleSignUp}
-          notification={notification}
-        />
-      </div>
+      <UserForm
+        handleSubmit={handleLogin}
+        handleUsernameChange={({ target }) => setUsername(target.value)}
+        handlePasswordChange={({ target }) => setPassword(target.value)}
+        username={username}
+        password={password}
+        handleLogin={handleLogin}
+        handleSignUp={handleSignUp}
+        notification={notification}
+      />
     )
   }
 
@@ -183,9 +180,7 @@ const App = () => {
 
   return (
     <div className="main-content">
-      <div>
-        <h1>Button <br />the Game</h1>
-      </div>
+      <h1>Button <br />the Game</h1>
       <div>
         {user === null ? userForm() : gameDisplay()}
       </div>

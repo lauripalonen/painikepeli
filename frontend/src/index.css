@@ -11,39 +11,45 @@ h1, h2 {
 }
 
 h4 {
+  margin-top: 0em;
+  padding-top: 1.5em;
+  margin-bottom: 0.5em;
   font-size: 0.9em;
-  margin: 2em 0 0 0; 
-}
-
-.inner-form {
-  margin: auto;
-  width: 100%;
-}
-
-.input-field {
-  width: 97%;
-}
-
-.button-block {
-  width: 100%;
-  margin: auto;
-  text-align: center;
 }
 
 .main-content {
   margin: auto;
-  border-style: solid 20px black;
-  width: 26em;
-  margin: 2em auto;
+  text-align: center; 
 }
 
-.account-form {
-  margin: 5em auto;
-  width: 22em;
+.account-block {
+  margin: auto;
+  display: inline-block;
+}
+
+.user-form {
+  text-align: left;
+}
+
+.input-field {
+  width: 99%;
+}
+
+.game-display {
+  display:inline-block;
+  padding: 0 1em 0 1em;
 }
 
 .game-content {
   text-align: center;
+}
+
+.game-data {
+  display:inline-block;
+  width: 100%;
+  font-size: 1em;
+  text-align: center;
+  padding-top: 1em;
 }
 
 .notification-bar {
@@ -55,21 +61,17 @@ h4 {
 
 .instruction-block { 
   text-align: left;
-  padding: 1em 0 0 1em;
 }
 
-.instructions {
-  text-align: left;
-  font-size: 0.7em;
-  line-height: 150%;
+ul {
+  list-style-type: none;
+  margin: 0em;
+  padding: 0;
+  font-size: 0.8em;
 }
 
-.game-data {
-  display:inline-block;
-  width: 100%;
-  font-size: 1em;
-  text-align: center;
-  padding-top: 1em;
+li {
+  line-height: 1.5em;
 }
 
 .quote {
@@ -94,12 +96,12 @@ h4 {
 
 .normal-button {
   display:inline-block;
-  height: 4.5em;
-  width: 8.5em;
-  margin: 2em 0.1em;
+  height: 4em;
+  width: 8em;
+  margin: 2em 0em 1em 0em;
   background-color: rgb(247, 137, 241);
   border: none;
   font-family: 'Press Start 2p';
-  font-size: 1em;
-  color: #FFCCE7
+  font-size: 0.9em;
+  color: #FFCCE7;
 }

@@ -10,31 +10,31 @@ const UserForm = ({
   notification
 }) => {
   return (
-    <div>
+    <div className="account-block">
       <h2>Player account</h2>
-      <form className="inner-form">
+      <form className="user-form">
         <label htmlFor="username">Username </label>
         <br />
         <input
+          className="input-field"
           type="text"
           value={username}
           name="Username"
           onChange={handleUsernameChange}
-          className="input-field"
         />
         <br />
         <br />
         <label htmlFor="password">Password </label>
         <br />
         <input
+          className="input-field"
           type="password"
           value={password}
           name="Password"
           onChange={handlePasswordChange}
-          className="input-field"
         />
       </form>
-      <div className="button-block">
+      <div>
         <button onClick={handleLogin} className="normal-button">LOG IN</button> or <button onClick={handleSignUp} className="normal-button">SIGN UP</button>
       </div>
       <p style={{ textAlign: 'center' }}>{notification}</p>
