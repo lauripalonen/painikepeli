@@ -179,7 +179,7 @@ const App = () => {
         </div>
         <div className="game-data">
           Your points: {userPoints} < br />
-          Pushes until next reward: {rewardCounter}
+          Next reward in: {rewardCounter} pushes
         </div>
         <div className="notification-bar">
           {notification}
@@ -217,7 +217,7 @@ const App = () => {
   return (
     <div className="main-content">
       <div>
-        <h1>Button the Game</h1>
+        <h1>Button <br/>the Game</h1>
       </div>
       <div>
         {user === null ? userForm() : gameDisplay()}
