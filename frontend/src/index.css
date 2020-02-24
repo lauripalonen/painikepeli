@@ -35,6 +35,14 @@ h4 {
   width: 99%;
 }
 
+.form-notification-bar {
+  min-height: 2em;
+  max-width: 20em;
+  display: block;
+  margin: auto;
+  padding: 1em 0.5em 1em 0.5em;
+}
+
 .game-display {
   display:inline-block;
   padding: 0 1em 0 1em;
@@ -52,7 +60,7 @@ h4 {
   padding-top: 1em;
 }
 
-.notification-bar {
+.game-notification-bar {
   padding-top: 1em;
   text-align: center;
   height: 1em;

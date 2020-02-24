@@ -37,7 +37,9 @@ const UserForm = ({
       <div>
         <button onClick={handleLogin} className="normal-button">LOG IN</button> or <button onClick={handleSignUp} className="normal-button">SIGN UP</button>
       </div>
-      <p style={{ textAlign: 'center' }}>{notification}</p>
+      <div className="form-notification-bar">
+        {notification}
+      </div>
     </div>
   )
 }

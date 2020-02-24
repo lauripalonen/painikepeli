@@ -27,6 +27,7 @@ const App = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault()
+    setNotification('loading...')
     try {
       const user = await loginService.login({
         username, password,
@@ -42,6 +43,7 @@ const App = () => {
 
   const handleSignUp = async (event) => {
     event.preventDefault()
+    setNotification('loading...')
     try {
       const user = await userService.signup({
         username, password,
@@ -70,7 +72,7 @@ const App = () => {
     setNotification('')
   }
 
-  const handleButtonPush = async (event) => {
+  const handleGameButtonPush = async (event) => {
     const button = await buttonService.getButton()
     let pushCount = button.pushCount
 
@@ -169,7 +171,7 @@ const App = () => {
   const gameDisplay = () => {
     return (
       <GameDisplay
-        handleButtonPush={handleButtonPush}
+        handleButtonPush={handleGameButtonPush}
         userPoints={userPoints}
         rewardCounter={rewardCounter}
         notification={notification}

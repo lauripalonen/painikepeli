@@ -17,7 +17,7 @@ const GameDisplay = ({
         Your points: {userPoints} <br />
         Next reward in: {rewardCounter} pushes
       </div>
-      <div className="notification-bar">
+      <div className="game-notification-bar">
         {notification}
       </div>
       <div className="instruction-block">
