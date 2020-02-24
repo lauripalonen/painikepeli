@@ -30,9 +30,8 @@
     "nodemon": "^2.0.2",
     "supertest": "^4.0.2"
   },
-  {
   "jest": {
-    "testPathIgnorePatterns" : [
+    "testPathIgnorePatterns": [
       "./utils/middleware.js"
     ]
   }
