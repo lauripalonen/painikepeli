@@ -34,15 +34,15 @@ usersRouter.post('/', async (request, response, next) => {
 })
 
 usersRouter.get('/:id', async (request, response) => {
-  const player = await User.findById(request.params.id)
-  response.json(player)
+  const user = await User.findById(request.params.id)
+  response.json(user)
 })
 
 usersRouter.put('/:id', async (request, response) => {
-  const player = request.body
-  User.findByIdAndUpdate(request.params.id, player, { new: true })
-    .then(updatedPlayer => {
-      response.json(updatedPlayer.toJSON())
+  const user = request.body
+  User.findByIdAndUpdate(request.params.id, user, { new: true })
+    .then(updatedUser => {
+      response.json(updatedUser.toJSON())
     })
     .catch(error => next(error))
 })

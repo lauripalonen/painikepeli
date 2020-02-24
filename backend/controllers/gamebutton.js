@@ -10,7 +10,7 @@ buttonRouter.post('/', async (request, response) => {
   const body = request.body
 
   try {
-    const newButton = new GameButton({presses: body.presses})
+    const newButton = new GameButton({ pushCount: body.pushCount })
     const savedButton = await newButton.save()
 
     response.json(savedButton)
@@ -24,14 +24,14 @@ buttonRouter.put('/:id', (request, response, next) => {
   const body = request.body
 
   const gamebutton = {
-    presses: body.presses
+    pushCount: body.pushCount
   }
 
   GameButton.findByIdAndUpdate(request.params.id, gamebutton, { new: true })
-  .then(updatedButton => {
-    response.json(updatedButton.toJSON())
-  })
-  .catch(error => next(error))
+    .then(updatedButton => {
+      response.json(updatedButton.toJSON())
+    })
+    .catch(error => next(error))
 
 })
 

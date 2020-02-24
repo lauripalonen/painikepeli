@@ -7,7 +7,7 @@ const api = supertest(app)
 
 const initialButtons = [
   {
-    presses: 50
+    pushCount: 50
   }
 ]
 
@@ -23,14 +23,14 @@ test('a button is returned', async () => {
     .expect(200)
     .expect('Content-Type', /application\/json/)
 
-  expect(gameButton.body.presses).toEqual(50)
+  expect(gameButton.body.pushCount).toEqual(50)
 
 })
 
 test('button pushes can be incremented', async () => {
   const result = await api.get('/api/button')
   const gameButton = result.body
-  const incrementedButton = { ...gameButton, presses: gameButton.presses + 1 }
+  const incrementedButton = { ...gameButton, pushCount: gameButton.pushCount + 1 }
 
   const response = await api
     .put(`/api/button/${gameButton.id}`)
@@ -38,7 +38,7 @@ test('button pushes can be incremented', async () => {
     .expect(200)
     .expect('Content-Type', /application\/json/)
 
-  expect(response.body.presses).toEqual(gameButton.presses + 1)
+  expect(response.body.pushCount).toEqual(gameButton.pushCount + 1)
 
 })
 

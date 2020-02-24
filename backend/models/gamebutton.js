@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const buttonSchema = mongoose.Schema({
-  presses: Number
+  pushCount: Number
 })
 
 buttonSchema.set('toJSON', {

@@ -5,13 +5,16 @@ const UserForm = ({
   handlePasswordChange,
   username,
   password,
+  handleLogin,
+  handleSignUp,
+  notification
 }) => {
   return (
     <div>
       <h2>Player account</h2>
       <form className="inner-form">
         <label htmlFor="username">Username </label>
-        <br/>
+        <br />
         <input
           type="text"
           value={username}
@@ -19,10 +22,10 @@ const UserForm = ({
           onChange={handleUsernameChange}
           className="input-field"
         />
-        <br/>
+        <br />
         <br />
         <label htmlFor="password">Password </label>
-        <br/>
+        <br />
         <input
           type="password"
           value={password}
@@ -31,6 +34,10 @@ const UserForm = ({
           className="input-field"
         />
       </form>
+      <div className="button-block">
+        <button onClick={handleLogin} className="normal-button">LOG IN</button> or <button onClick={handleSignUp} className="normal-button">SIGN UP</button>
+      </div>
+      <p style={{ textAlign: 'center' }}>{notification}</p>
     </div>
   )
 }

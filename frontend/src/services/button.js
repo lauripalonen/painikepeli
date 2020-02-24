@@ -11,9 +11,9 @@ const getButton = async () => {
   return response.data
 }
 
-const getButtonPresses = async () => {
+const getPushCount = async () => {
   const response = await axios.get(baseUrl)
-  return response.data.presses
+  return response.data.pushCount
 }
 
-export default { increment, getButton, getButtonPresses }
+export default { increment, getButton, getPushCount }

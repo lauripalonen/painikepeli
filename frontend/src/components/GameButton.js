@@ -1,9 +1,9 @@
 import React from 'react'
 
-const GameButton = ({ handleButtonPress}) => {
+const GameButton = ({ handleButtonPush}) => {
   return (
   <div>
-    <button onClick={handleButtonPress} id="thebutton">PUSH</button>
+    <button onClick={handleButtonPush} id="thebutton">PUSH</button>
   </div>
   )
 }

@@ -6,14 +6,14 @@ const signup = async credentials => {
   return response.data
 }
 
-const getPlayer = async (id) => {
+const getUser = async (id) => {
   const response = await axios.get(`${baseUrl}/${id}`)
   return response.data
 }
 
-const updatePlayerPoints = async (id, player) => {
-  const response = await axios.put(`${baseUrl}/${id}`, player)
+const updateUserPoints = async (id, user) => {
+  const response = await axios.put(`${baseUrl}/${id}`, user)
   return response.data
 }
 
-export default { signup, updatePlayerPoints, getPlayer }
+export default { signup, updateUserPoints: updateUserPoints, getUser }
