@@ -1,4 +1,4 @@
-# Button the Game
+# Button the Game [![CircleCI](https://circleci.com/gh/lauripalonen/painikepeli.svg?style=svg)](https://circleci.com/gh/lauripalonen/painikepeli) [![codecov](https://codecov.io/gh/lauripalonen/painikepeli/branch/master/graph/badge.svg)](https://codecov.io/gh/lauripalonen/painikepeli)  
 A simple "push-the-button" game, deployed at Heroku:  
 https://buttonthegame.herokuapp.com  
   
@@ -48,7 +48,7 @@ Follow the [Heroku instructions](https://devcenter.heroku.com/articles/git) for 
 When deploying the code, run command `git subtree push --prefix backend heroku master` on project root directory instead of `git push heroku master`. Heroku expects for the deployable code to be in the repository root, but in our case it is in the backend directory. `git subtree` is a workaround for this issue.
 
 
-## Backend testing [![CircleCI](https://circleci.com/gh/lauripalonen/painikepeli.svg?style=svg)](https://circleci.com/gh/lauripalonen/painikepeli) [![codecov](https://codecov.io/gh/lauripalonen/painikepeli/branch/master/graph/badge.svg)](https://codecov.io/gh/lauripalonen/painikepeli)  
+## Backend testing  
 To run backend tests, use command `npm test` on backend root. 
 
 ## For further development
