@@ -9,15 +9,18 @@ const api = supertest(app)
 const initialUsers = [
   {
     username: 'aerodactyl',
-    passwordHash: 'Wing4ttack'
+    passwordHash: 'Wing4ttack',
+    points: 20
   },
   {
     username: 'jigglypuff',
-    passwordHash: 'p0unD'
+    passwordHash: 'p0unD',
+    points: 20
   },
   {
     username: 'charizard',
-    passwordHash: 'fl4meWheel'
+    passwordHash: 'fl4meWheel',
+    points: 20
   }
 ]
 
@@ -72,6 +75,56 @@ test('user can not login with non-existing username', async () => {
     .post('/api/login')
     .send(credentials)
     .expect(401)
+})
+
+test('all users are returned', async () => {
+  const response = await api.get('/api/users')
+  expect(response.body.length).toBe(initialUsers.length)
+})
+
+test('new user can be created with correct credentials', async () => {
+  const newUser = {
+    username: 'L4pras',
+    password: 'Blizz4rd'
+  }
+
+  await api
+    .post('/api/users')
+    .send(newUser)
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
+
+
+})
+
+test('correct user is returned', async () => {
+  const users = await api.get('/api/users')
+
+  const user = users.body[0]
+
+  const resultUser = await api
+    .get(`/api/users/${user.id}`)
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
+
+  expect(resultUser.body).toEqual(user)
+
+})
+
+test('player points are incremented', async () => {
+  const players = await api.get('/api/users')
+  const player = players.body[0]
+
+  const updatedPlayer = { ...player, points: player.points + 1 }
+
+  const resultPlayer = await api
+    .put(`/api/users/${updatedPlayer.id}`)
+    .send(updatedPlayer)
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
+    
+  expect(resultPlayer.body.points).toEqual(player.points + 1)
+
 })
 
 afterAll(() => {
