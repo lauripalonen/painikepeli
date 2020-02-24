@@ -32,8 +32,8 @@ beforeEach(async () => {
 test('user can login with correct credentials', async () => {
 
   const credentials = {
-    username: 'Jigglypuff',
-    password: 'p0und'
+    username: 'Aerodactyl',
+    password: 'Wing4ttack'
   }
 
   await api
