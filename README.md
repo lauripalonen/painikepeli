@@ -37,7 +37,7 @@ Configuration file in backend/utils/config.js expects a .env file in backend roo
 Make sure that the .env file is in your .gitignore!
 
 **Run the project**  
-Type `npm run watch` in the backend root to start server. After server is running, run `npm start` in frontend root to start the web page.
+Type `npm run watch` in the backend root to start server. After server is running, run `npm start` in frontend root to start the web page. By default server will run on port 3001 and frontend in port 3000.
 
 ## Deploy to Heroku
 Create project build by running command `npm run build:ui` in backend root.  
