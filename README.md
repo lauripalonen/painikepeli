@@ -28,7 +28,7 @@ Run `npm install` on root of both backend and frontend directories to install pr
 Log in to your [MongoDB account](https://www.mongodb.com/cloud) or create a new one. Build a new cluster and as a connection method, choose *"Connect your Application"* and copy the connection string (begins with "mongodb+srv://...").
 
 **Environment variables**  
-Configuration file in backend/utils/config.js expects a .env file in backend root. Create .env in backend/ and add four variables to it:  
+Configuration file in backend/utils/config.js expects a .env file in backend root. Create .env to backend/ and write following four variables to it:  
 - `MONGODB_URI=mongodb+srv://<your_credentials>@<db_address>/<collection_name>?retryWrites=true&w=majority` (use the copied connection string here)
 - `MONGODB_TEST_URI=mongodb+srv://<your_credentials>s@<db_address>/<test_collection_name>retryWrites=true&w=majority`
 - `PORT=3001` (or port of your choice)
