@@ -28,13 +28,21 @@ Run `npm install` on root of both backend and frontend directories to install pr
 Log in to your [MongoDB account](https://www.mongodb.com/cloud) or create a new one. Build a new cluster and as a connection method, choose *"Connect your Application"* and copy the connection string (begins with "mongodb+srv://...").
 
 **Environment variables**  
-Configuration file in backend/utils/config.js expects a .env file in backend root. Create .env to backend/ and write following four variables to it:  
-- `MONGODB_URI=mongodb+srv://<your_credentials>@<db_address>/<collection_name>?retryWrites=true&w=majority` (use the copied connection string here)
-- `MONGODB_TEST_URI=mongodb+srv://<your_credentials>s@<db_address>/<test_collection_name>retryWrites=true&w=majority`
-- `PORT=3001` (or port of your choice)
-- `SECRET=<secret_string_of_your_choice>` (required by jsonwebtoken depency)  
+Configuration file in backend/utils/config.js expects a .env file in backend root. Create .env to backend/ and write following four variables to it:
+```
+MONGODB_URI=mongodb+srv://<your_credentials>@<db_address>/<collection_name>?retryWrites=true&w=majority
 
-Make sure that the .env file is in your .gitignore!
+MONGODB_TEST_URI=mongodb+srv://<your_credentials>s@<db_address>/<test_collection_name>retryWrites=true&w=majority
+
+PORT=3001
+
+SECRET=<secret_string_of_your_choice>
+
+```
+
+Use the copied connection string for `MONGODB_URI`. Generate a separe test-collection in Mongo and use it's connection string for `MONDODB_TEST_URI`. `PORT` can also be a port of your choice. `SECRET` is required by jsonwebtoken depency, and it can be any string you choose.
+
+Make sure that the **.env** file is in your **.gitignore**!
 
 **Run the project**  
 Type `npm run watch` in the backend root to start server. After server is running, run `npm start` in frontend root to start the web page. By default server will run on port 3001 and frontend in port 3000.
