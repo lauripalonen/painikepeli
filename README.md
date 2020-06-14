@@ -28,16 +28,24 @@ Run `npm install` on root of both backend and frontend directories to install pr
 Log in to your [MongoDB account](https://www.mongodb.com/cloud) or create a new one. Build a new cluster and as a connection method, choose *"Connect your Application"* and copy the connection string (begins with "mongodb+srv://...").
 
 **Environment variables**  
-Config file in backend/utils/config.js excepts a .env file in backend root. Create .env in backend/ and add four variables to it:  
-- `MONGODB_URI=mongodb+srv://<your_credentials>@<db_address>/<collection_name>?retryWrites=true&w=majority` (use the copied connection string here)
-- `MONGODB_TEST_URI=mongodb+srv://<your_credentials>s@<db_address>/<test_collection_name>retryWrites=true&w=majority`
-- `PORT=3001` (or port of your choice)
-- `SECRET=<secret_string_of_your_choice>` (required by jsonwebtoken depency)  
+Configuration file in backend/utils/config.js expects a .env file in backend root. Create .env to backend/ and write following four variables to it:
+```
+MONGODB_URI=mongodb+srv://<your_credentials>@<db_address>/<collection_name>?retryWrites=true&w=majority
 
-Make sure that the .env file is in your .gitignore!
+MONGODB_TEST_URI=mongodb+srv://<your_credentials>s@<db_address>/<test_collection_name>retryWrites=true&w=majority
+
+PORT=3001
+
+SECRET=<secret_string_of_your_choice>
+
+```
+
+Use the copied connection string for `MONGODB_URI`. Generate a separe test-collection in Mongo and use it's connection string for `MONDODB_TEST_URI`. `PORT` can also be a port of your choice. `SECRET` is required by jsonwebtoken depency, and it can be any string you choose.
+
+Make sure that the **.env** file is in your **.gitignore**!
 
 **Run the project**  
-Type `npm run watch` in the backend root to start server. After server is running, run `npm start` in frontend root to start the web page.
+Type `npm run watch` in the backend root to start server. After server is running, run `npm start` in frontend root to start the web page. By default server will run on port 3001 and frontend in port 3000.
 
 ## Deploy to Heroku
 Create project build by running command `npm run build:ui` in backend root.  
@@ -49,12 +57,12 @@ When deploying the code, run command `git subtree push --prefix backend heroku m
 
 
 ## Backend testing  
-To run backend tests, use command `npm test` on backend root. 
+To run backend tests, use command `npm test` on backend root. This will also create a test coverage report to backend/coverage/lcov-report/index.html.
 
 ## For further development
 **Optimize server communication**  
 Current communication from frontend to the database is rather heavy. For better performance, one solution would be implementing a WebSocket API to this project. This could also make the reward counter act in real-time, instead of per button push or page reload.
 
-**Restrict /api/ paths**
-Paths such as /api/button are not restricted, and anyone can access them. While they don't contain any sensitive data, certainly they should be only in app's use. This issue can be fixed with [Redux state container](https://github.com/reduxjs/redux).
+**Restrict /api/ paths**  
+Paths such as /api/button are not restricted, and anyone can access them. While they don't contain any sensitive data, they should be only in app's use. This issue can be fixed with [Redux state container](https://github.com/reduxjs/redux).
 
