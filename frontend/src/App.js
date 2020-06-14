@@ -93,46 +93,31 @@ const App = () => {
   const handleUserPoints = async () => {
     const loggedUser = JSON.parse(window.localStorage.getItem('loggedButtonGameUser'))
 
-    const updatedUser = {
-      ...loggedUser,
-      points: loggedUser.points < 1 ? 0 : loggedUser.points - 1
-    }
-
-    let updatedPoints = updatedUser.points
-    setUserPoints(updatedPoints)
+    setUserPoints(loggedUser.points < 1 ? 0 : loggedUser.points - 1)
 
     const buttonPushCount = await buttonService.getPushCount()
 
-    if (buttonPushCount % 500 === 0) {
-      updatedPoints += 250
-      setTimedNotification('250 points rewarded!')
+    const response = await userService.incrementUserPoints(user.id,
+      { user: loggedUser, buttonPushCount: buttonPushCount })
+
+    let updatedUser = response.user
+    const reward = response.reward
+
+    if (reward > 0) {
+      setTimedNotification(`${reward} points rewarded!`)
     }
 
-    else if (buttonPushCount % 100 === 0) {
-      updatedPoints += 40
-      setTimedNotification('40 points rewarded!')
-    }
-
-    else if (buttonPushCount % 10 === 0) {
-      updatedPoints += 5
-      setTimedNotification('5 points rewarded!')
-    }
-
-    if (updatedPoints < 1) {
+    if (updatedUser.points < 1) {
       if (window.confirm("No more points. Start again with 20 points?")) {
-        updatedPoints = 20
+        updatedUser = await userService.resetUserPoints(user.id, loggedUser)
       } else {
         handleLogout()
         return
       }
     }
-
-    updatedUser.points = updatedPoints
+    
     setUserPoints(updatedUser.points)
-
-    await userService.updateUserPoints(user.id, updatedUser)
     window.localStorage.setItem('loggedButtonGameUser', JSON.stringify(updatedUser))
-
   }
 
   const handleLogout = () => {

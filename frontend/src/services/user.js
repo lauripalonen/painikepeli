@@ -11,9 +11,14 @@ const getUser = async (id) => {
   return response.data
 }
 
-const updateUserPoints = async (id, user) => {
-  const response = await axios.put(`${baseUrl}/${id}`, user)
+const incrementUserPoints = async (id, { user, buttonPushCount }) => {
+  const response = await axios.put(`${baseUrl}/${id}/reward`, { user, buttonPushCount })
   return response.data
 }
 
-export default { signup, updateUserPoints: updateUserPoints, getUser }
+const resetUserPoints = async (id, user) => {
+  const response = await axios.put(`${baseUrl}/${id}/reset`, user)
+  return response.data
+}
+
+export default { signup, getUser, incrementUserPoints, resetUserPoints }

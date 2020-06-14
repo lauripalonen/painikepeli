@@ -12,8 +12,8 @@ usersRouter.post('/', async (request, response, next) => {
     const body = request.body
 
     const passwordValidator = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{5,})")
-    if(!passwordValidator.test(body.password)){
-    return response.status(400).send({error: 'password too weak: please include lowercase, uppercase and numeric characters (min. length: 5)'})
+    if (!passwordValidator.test(body.password)) {
+      return response.status(400).send({ error: 'password too weak: please include lowercase, uppercase and numeric characters (min. length: 5)' })
     }
 
     const saltRounds = 10
@@ -38,13 +38,45 @@ usersRouter.get('/:id', async (request, response) => {
   response.json(user)
 })
 
-usersRouter.put('/:id', async (request, response) => {
-  const user = request.body
-  User.findByIdAndUpdate(request.params.id, user, { new: true })
+usersRouter.put('/:id/reward', (request, response) => {
+  const user = request.body.user
+  const buttonPushCount = request.body.buttonPushCount
+
+  const reward = rewardCalculator(buttonPushCount)
+
+  let points = user.points - 1 + reward
+  const updatedUser = { ...user, points: points }
+
+  User.findByIdAndUpdate(request.params.id, updatedUser, { new: true })
     .then(updatedUser => {
-      response.json(updatedUser.toJSON())
+      response.json({ user: updatedUser.toJSON(), reward: reward })
     })
     .catch(error => next(error))
+})
+
+const rewardCalculator = (buttonPushCount) => {
+  let reward = 0;
+
+  if (buttonPushCount % 500 === 0) {
+    reward = 250
+  }
+
+  else if (buttonPushCount % 100 === 0) {
+    reward = 40
+  }
+
+  else if (buttonPushCount % 10 === 0) {
+    reward = 5
+  }
+
+  return reward
+}
+
+usersRouter.put('/:id/reset', async (request, response) => {
+  const user = request.body.user
+  const updatedUser = { ...user, points: 20 }
+  const resp = await User.findByIdAndUpdate(request.params.id, updatedUser, { new: true })
+  response.json(resp.toJSON())
 })
 
 module.exports = usersRouter
