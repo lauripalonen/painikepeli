@@ -111,19 +111,20 @@ test('correct user is returned', async () => {
 
 })
 
-test('player points are incremented', async () => {
+test('player points are decremented', async () => {
   const players = await api.get('/api/users')
   const player = players.body[0]
+  const buttonPushCount = 1
 
-  const updatedPlayer = { ...player, points: player.points + 1 }
+  // const updatedPlayer = { ...player, points: player.points + 1 }
 
   const resultPlayer = await api
-    .put(`/api/users/${updatedPlayer.id}`)
-    .send(updatedPlayer)
+    .put(`/api/users/${player.id}/reward`)
+    .send({ user: player, buttonPushCount: buttonPushCount })
     .expect(200)
     .expect('Content-Type', /application\/json/)
-    
-  expect(resultPlayer.body.points).toEqual(player.points + 1)
+
+  expect(resultPlayer.body.user.points).toEqual(player.points - 1)
 
 })
 
