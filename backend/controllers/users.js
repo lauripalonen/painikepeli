@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const usersRouter = require('express').Router()
 const User = require('../models/user')
+const { rewardCalculator } = require('../tools/computationalTools')
 
 usersRouter.get('/', async (request, response) => {
   const users = await User.find({})
@@ -53,24 +54,6 @@ usersRouter.put('/:id/points', (request, response) => {
     })
     .catch(error => next(error))
 })
-
-const rewardCalculator = (buttonPushCount) => {
-  let reward = 0;
-
-  if (buttonPushCount % 500 === 0) {
-    reward = 250
-  }
-
-  else if (buttonPushCount % 100 === 0) {
-    reward = 40
-  }
-
-  else if (buttonPushCount % 10 === 0) {
-    reward = 5
-  }
-
-  return reward
-}
 
 usersRouter.put('/:id/reset', async (request, response) => {
   const user = request.body.user
