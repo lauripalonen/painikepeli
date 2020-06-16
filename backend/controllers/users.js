@@ -38,7 +38,7 @@ usersRouter.get('/:id', async (request, response) => {
   response.json(user)
 })
 
-usersRouter.put('/:id/reward', (request, response) => {
+usersRouter.put('/:id/points', (request, response) => {
   const user = request.body.user
   const buttonPushCount = request.body.buttonPushCount
 

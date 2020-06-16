@@ -119,7 +119,7 @@ test('player points are decremented', async () => {
   // const updatedPlayer = { ...player, points: player.points + 1 }
 
   const resultPlayer = await api
-    .put(`/api/users/${player.id}/reward`)
+    .put(`/api/users/${player.id}/points`)
     .send({ user: player, buttonPushCount: buttonPushCount })
     .expect(200)
     .expect('Content-Type', /application\/json/)

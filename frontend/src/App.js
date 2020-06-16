@@ -97,7 +97,7 @@ const App = () => {
 
     const buttonPushCount = await buttonService.getPushCount()
 
-    const response = await userService.incrementUserPoints(user.id,
+    const response = await userService.computeUserPoints(user.id,
       { user: loggedUser, buttonPushCount: buttonPushCount })
 
     let updatedUser = response.user

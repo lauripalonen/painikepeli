@@ -11,8 +11,8 @@ const getUser = async (id) => {
   return response.data
 }
 
-const incrementUserPoints = async (id, { user, buttonPushCount }) => {
-  const response = await axios.put(`${baseUrl}/${id}/reward`, { user, buttonPushCount })
+const computeUserPoints = async (id, { user, buttonPushCount }) => {
+  const response = await axios.put(`${baseUrl}/${id}/points`, { user, buttonPushCount })
   return response.data
 }
 
@@ -21,4 +21,4 @@ const resetUserPoints = async (id, user) => {
   return response.data
 }
 
-export default { signup, getUser, incrementUserPoints, resetUserPoints }
+export default { signup, getUser, computeUserPoints, resetUserPoints }
